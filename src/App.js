@@ -4,6 +4,7 @@ import GlobalLayout from './Layouts/GlobalLayout';
 import HomePage from './Pages/HomePage';
 import { useEffect, useState } from 'react';
 import ErrorPage from './Components/ErrorPage';
+import ToDoFormPage from './Pages/ToDoFormPage';
 
 
 
@@ -32,16 +33,22 @@ const App = () => {
           index: true,
           element: <HomePage toDoList={toDoList}/>
         },
-        
+        {
+          path: '/todo-form',
+          element: <ToDoFormPage urlEndpoint={urlEndpoint}/>,
+        }
       ]
     }
   ], [])
 
   return (
-    <div className="App">
-      <RouterProvider router={router} />  {/* All router objects are passed to this component to render your app and enable the rest of the APIs. */}
+    <header className='App-header'>
+      <div className="App">
+        <RouterProvider router={router} />  {/* All router objects are passed to this component to render your app and enable the rest of the APIs. */}
+
+      </div>
+    </header>
     
-    </div>
   );
 }
 

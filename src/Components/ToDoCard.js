@@ -4,7 +4,7 @@ const ToDoCard = ({toDoList}) => {
     // const { toDoList } = props
     console.log("toDoList", toDoList)
     return (
-        <div>
+        <div className='todo-card'>
             <h2>{toDoList.title}</h2>
             <p>ID: {toDoList.id}</p>
             <p>Description: {toDoList.description}</p>
