@@ -1,7 +1,7 @@
 import React from "react";
 import ToDoCard from "../Components/ToDoCard";
 
-const HomePage = ({toDoList}) => {
+const HomePage = ({toDoList, urlEndpoint}) => {
 //   const { toDoList } = props;
     console.log("homepage", toDoList)
   return (
@@ -10,7 +10,7 @@ const HomePage = ({toDoList}) => {
       {/* <ToDoCard /> */}
       <h1>Fullstack ToDo Application</h1>
       {toDoList.map((toDo, index)=>{
-            return <ToDoCard key={index} toDoList={toDo} />
+            return <ToDoCard key={index} toDo={toDo} urlEndpoint={urlEndpoint}/>
         })}
         
     </div>

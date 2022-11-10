@@ -66,8 +66,7 @@ const ToDoFormPage = ({ urlEndpoint }) => {
       <button
         onClick={() => {
           handleCreateToDo();
-         
-         
+          redirectHome()
 
         }}
       >

@@ -1,18 +1,37 @@
 import React from 'react'
 
-const ToDoCard = ({toDoList}) => {
+const ToDoCard = ({toDo, urlEndpoint}) => {
     // const { toDoList } = props
-    console.log("toDoList", toDoList)
+    const id = toDo.id
+
+    console.log("toDo", toDo)
+
+
+    const handleSetToDoComplete = async () => {
+        const response = await fetch(`${urlEndpoint}/todos/update-one/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                isComplete: toDo.isComplete ? false : true
+            })
+        })
+    }
+
     return (
         <div className='todo-card'>
-            <h2>{toDoList.title}</h2>
-            <p>ID: {toDoList.id}</p>
-            <p>Description: {toDoList.description}</p>
-            <p>Priority: {toDoList.description}</p>
-            <p>Is Complete: {toDoList.isComplete ? "Complete" : "Nope"}</p>
-            <p>Creation Date: {toDoList.creationDate.toString().substring(0,19)}</p>
-            <p>Last Modified: {toDoList.lastModified.toString().substring(0,19)}</p>
-            <p>Completed Date: {toDoList.completedDate !== null && toDoList.completedDate}</p>
+            <h2>{toDo.title}</h2>
+            <p>ID: {toDo.id}</p>
+            <p>Description: {toDo.description}</p>
+            <p>Priority: {toDo.priority}</p>
+            <p>Is Complete: {toDo.isComplete ? "Complete" : "Nope"}</p>
+            <button onClick={(e)=>{
+                handleSetToDoComplete()
+            }}>Toggle</button>
+            <p>Creation Date: {toDo.creationDate.toString().substring(0,19)}</p>
+            <p>Last Modified: {toDo.lastModified.toString().substring(0,19)}</p>
+            <p>Completed Date: {toDo.completedDate !== null && toDo.completedDate}</p>
         </div>
     )
 }

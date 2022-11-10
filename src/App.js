@@ -18,7 +18,7 @@ const App = () => {
       const result = await fetch('http://localhost:4000/todos/all')
       const fetchedToDos = await result.json();
       console.log("fetchedToDos", fetchedToDos)
-      setToDoList(fetchedToDos.todo)
+      setToDoList(fetchedToDos.todo) // .todo is the same ----->
     }
     fetchTodos()
   }, [])
@@ -31,7 +31,7 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <HomePage toDoList={toDoList}/>
+          element: <HomePage toDoList={toDoList} urlEndpoint={urlEndpoint}/>
         },
         {
           path: '/todo-form',
