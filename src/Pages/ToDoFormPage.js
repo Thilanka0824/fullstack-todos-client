@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const ToDoFormPage = ({ urlEndpoint }) => {
+const ToDoFormPage = ({setShouldRefetch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -13,6 +13,7 @@ const ToDoFormPage = ({ urlEndpoint }) => {
   };
 
   const handleCreateToDo = async () => {
+    setShouldRefetch(true)
     const response = await fetch(`http://localhost:4000/todos/create-one`, {
       method: "POST",
       body: JSON.stringify({
@@ -24,6 +25,9 @@ const ToDoFormPage = ({ urlEndpoint }) => {
         "Content-Type": "application/json",
       },
     });
+    
+    setShouldRefetch(false);
+
   };
 
   return (

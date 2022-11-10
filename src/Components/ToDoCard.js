@@ -1,12 +1,13 @@
 import React from "react";
 
-const ToDoCard = ({ toDo, urlEndpoint }) => {
+const ToDoCard = ({ toDo, urlEndpoint, setShouldRefetch }) => {
   // const { toDoList } = props
   const id = toDo.id;
 
   console.log("toDo", toDo);
 
   const handleSetToDoComplete = async () => {
+    setShouldRefetch(true)
     const response = await fetch(`${urlEndpoint}/todos/update-one/${id}`, {
       method: "PUT",
       headers: {
@@ -16,12 +17,15 @@ const ToDoCard = ({ toDo, urlEndpoint }) => {
         isComplete: toDo.isComplete ? false : true,
       }),
     });
+    setShouldRefetch(false)
   };
 
   const handleDeleteToDo = async () => {
+    setShouldRefetch(true)
     const response = await fetch(`${urlEndpoint}/todos/delete-one/${id}`, {
       method: "DELETE",
     });
+    setShouldRefetch(false)
   };
 
   return (
@@ -40,7 +44,7 @@ const ToDoCard = ({ toDo, urlEndpoint }) => {
       </button>
       <p>Creation Date: {toDo.creationDate.toString().substring(0, 19)}</p>
       <p>Last Modified: {toDo.lastModified.toString().substring(0, 19)}</p>
-      <p>Completed Date: {toDo.completedDate !== null && toDo.completedDate}</p>
+      <p>Completed Date: {toDo.completedDate !== null && toDo.completedDate.substring(0,19)}</p>
         <br/>
         <br/>
         <button className="delete-button" onClick={(e)=>{

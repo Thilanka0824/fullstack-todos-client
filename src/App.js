@@ -11,7 +11,8 @@ import ToDoFormPage from './Pages/ToDoFormPage';
 const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
 
 const App = () => {
-  const [toDoList, setToDoList] = useState([])
+  const [toDoList, setToDoList] = useState([]);
+  const [shouldRefetch, setShouldRefetch] = useState(false)
 
   useEffect(()=>{
     const fetchTodos = async () => {
@@ -21,7 +22,7 @@ const App = () => {
       setToDoList(fetchedToDos.todo) // .todo is the same ----->
     }
     fetchTodos()
-  }, [])
+  }, [shouldRefetch])
 
   const router = createBrowserRouter([
     {
@@ -31,11 +32,11 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <HomePage toDoList={toDoList} urlEndpoint={urlEndpoint}/>
+          element: <HomePage toDoList={toDoList} urlEndpoint={urlEndpoint} setShouldRefetch={setShouldRefetch}/>
         },
         {
           path: '/todo-form',
-          element: <ToDoFormPage urlEndpoint={urlEndpoint}/>,
+          element: <ToDoFormPage urlEndpoint={urlEndpoint} setShouldRefetch={setShouldRefetch}/>,
         }
       ]
     }
