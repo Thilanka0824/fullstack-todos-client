@@ -5,6 +5,13 @@ a {
   color: blue;
   margin: 0 10px;
 }
+.delete-button {
+  border: 5px solid red;
+  margin: 3px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -41,3 +48,5 @@ a {
     transform: rotate(360deg);
   }
 }
+
+

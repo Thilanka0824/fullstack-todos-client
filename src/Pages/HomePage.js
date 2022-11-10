@@ -12,6 +12,7 @@ const HomePage = ({toDoList, urlEndpoint}) => {
       {toDoList.map((toDo, index)=>{
             return <ToDoCard key={index} toDo={toDo} urlEndpoint={urlEndpoint}/>
         })}
+       
         
     </div>
   );
