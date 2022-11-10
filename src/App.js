@@ -8,7 +8,7 @@ import ToDoFormPage from './Pages/ToDoFormPage';
 
 
 
-const urlEndpoint = process.env
+const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
 
 const App = () => {
   const [toDoList, setToDoList] = useState([])
