@@ -7,8 +7,9 @@ const GlobalLayout = () => {
   return (
     <div className="global-layout">
     <NavBar />
-    <Outlet /> 
     <Footer />
+    <Outlet /> 
+    
     </div>
   )
 }

@@ -7,8 +7,8 @@ const Footer = () => {
     <footer className="footer">
       <p>
         {" "}
-        <Link to="/">Home</Link> <Link to="/todo-form">ToDo Form</Link>{" "}
-        copyright © {currentYear}{" "}
+        <Link>Login</Link> <Link to="/home-page">Home</Link>{" "}
+        <Link to="/todo-form">ToDo Form</Link> copyright © {currentYear}{" "}
       </p>
     </footer>
   );

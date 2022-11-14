@@ -2,36 +2,39 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const ToDoFormPage = ({setShouldRefetch }) => {
+const ToDoFormPage = ({ setShouldRefetch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
 
   const navigate = useNavigate();
   const redirectHome = () => {
-    navigate("/");
+    
+    navigate("/home-page");
+
   };
 
   const handleCreateToDo = async () => {
-    setShouldRefetch(true)
+    setShouldRefetch(true);
+
     const response = await fetch(`http://localhost:4000/todos/create-one`, {
       method: "POST",
       body: JSON.stringify({
-        title,
-        description,
+        title: title,
+        description: description,
         priority,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     
     setShouldRefetch(false);
-
   };
 
   return (
-    <div>
+    <div className="todo-form">
       <h1>ToDo Form</h1>
       <label>Title: </label>
       <input
@@ -70,12 +73,12 @@ const ToDoFormPage = ({setShouldRefetch }) => {
       <button
         onClick={() => {
           handleCreateToDo();
-          redirectHome()
-
+          redirectHome();
         }}
       >
         Create ToDo
       </button>
+      <br />
     </div>
   );
 };

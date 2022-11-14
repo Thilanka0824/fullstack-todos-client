@@ -4,10 +4,10 @@ const ToDoCard = ({ toDo, urlEndpoint, setShouldRefetch }) => {
   // const { toDoList } = props
   const id = toDo.id;
 
-  console.log("toDo", toDo);
+  // console.log("toDo", toDo);
 
   const handleSetToDoComplete = async () => {
-    setShouldRefetch(true)
+    setShouldRefetch(true);
     const response = await fetch(`${urlEndpoint}/todos/update-one/${id}`, {
       method: "PUT",
       headers: {
@@ -17,15 +17,15 @@ const ToDoCard = ({ toDo, urlEndpoint, setShouldRefetch }) => {
         isComplete: toDo.isComplete ? false : true,
       }),
     });
-    setShouldRefetch(false)
+    setShouldRefetch(false);
   };
 
   const handleDeleteToDo = async () => {
-    setShouldRefetch(true)
+    setShouldRefetch(true);
     const response = await fetch(`${urlEndpoint}/todos/delete-one/${id}`, {
       method: "DELETE",
     });
-    setShouldRefetch(false)
+    setShouldRefetch(false);
   };
 
   return (
@@ -44,12 +44,20 @@ const ToDoCard = ({ toDo, urlEndpoint, setShouldRefetch }) => {
       </button>
       <p>Creation Date: {toDo.creationDate.toString().substring(0, 19)}</p>
       <p>Last Modified: {toDo.lastModified.toString().substring(0, 19)}</p>
-      <p>Completed Date: {toDo.completedDate !== null && toDo.completedDate.substring(0,19)}</p>
-        <br/>
-        <br/>
-        <button className="delete-button" onClick={(e)=>{
-            handleDeleteToDo()
-        }}>Delete ToDo</button>
+      <p>
+        Completed Date:{" "}
+        {toDo.completedDate !== null && toDo.completedDate.substring(0, 19)}
+      </p>
+      <br />
+      <br />
+      <button
+        className="delete-button"
+        onClick={(e) => {
+          handleDeleteToDo();
+        }}
+      >
+        Delete ToDo
+      </button>
     </div>
   );
 };
